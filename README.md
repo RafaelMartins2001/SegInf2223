@@ -2,11 +2,11 @@
  Trabalhos e ficheiros de SegInf2223
  ## Trabalho 1
     - TP1
-**TODO()**
+**TODO:**
 - [x] Done
 - [ ] Not Done
  ## Trabalho 2
     - TP2
-**TODO()**
+**TODO:**
 - [ ] Done
 - [x] Not Done
