@@ -15,4 +15,4 @@
 
 **TODO:**
 - [ ] Done
-- [x] \([Adicionar certificado na root do Chrome para o exercício 6](https://docs.vmware.com/en/VMware-Adapter-for-SAP-Landscape-Management/2.1.0/Installation-and-Administration-Guide-for-VLA-Administrators/GUID-D60F08AD-6E54-4959-A272-458D08B8B038.html))
+- [ ] \([Adicionar certificado na root do Chrome para o exercício 6](https://docs.vmware.com/en/VMware-Adapter-for-SAP-Landscape-Management/2.1.0/Installation-and-Administration-Guide-for-VLA-Administrators/GUID-D60F08AD-6E54-4959-A272-458D08B8B038.html))
