@@ -24,7 +24,7 @@ const options = {
     key: fs.readFileSync('./secure-server-key.pem'),
     cert: fs.readFileSync('./secure-server.pem'),
     ca: [fs.readFileSync('./CA1-int.pem')],
-    requestCert: true, 
+    requestCert: false, 
     rejectUnauthorized: false
 };
 
