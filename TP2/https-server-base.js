@@ -23,9 +23,9 @@ app.get("/", function (req, res) {
 const options = {
     key: fs.readFileSync('./secure-server-key.pem'),
     cert: fs.readFileSync('./secure-server.pem'),
-    ca: fs.readFileSync('./CA1-int.pem'),
+    ca: [fs.readFileSync('./CA1-int.pem')],
     requestCert: true, 
-    rejectUnauthorized: true
+    rejectUnauthorized: false
 };
 
 // Create HTTPS server
