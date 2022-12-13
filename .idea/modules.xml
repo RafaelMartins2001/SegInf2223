@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SegInf2223.iml" filepath="$PROJECT_DIR$/SegInf2223.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TP1/TP1.iml" filepath="$PROJECT_DIR$/TP1/TP1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TP2/TP2.iml" filepath="$PROJECT_DIR$/TP2/TP2.iml" />
     </modules>
   </component>
 </project>
