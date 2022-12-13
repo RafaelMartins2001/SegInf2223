@@ -1,6 +1,5 @@
 import javax.net.ssl.*;
 import java.io.*;
-import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -11,7 +10,8 @@ public class exercicio6b {
         public static void main(String[] args) throws IOException, CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
                 TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
                 KeyStore ks = KeyStore.getInstance("JKS");
-                ks.load(new FileInputStream("CA.jks"), "changeit".toCharArray());
+                InputStream fileJKS = new FileInputStream("C:/Users/Rafae/Desktop/Repositorio SegInf/SegInf2223/TP2/CA.jks");
+                ks.load(fileJKS, "changeit".toCharArray());
                 tmf.init(ks);
                 SSLContext sslContext = SSLContext.getInstance("TLS");
                 sslContext.init(null, tmf.getTrustManagers(), null);
@@ -24,7 +24,7 @@ public class exercicio6b {
                 client.startHandshake();
                 SSLSession session = client.getSession();
 
-                System.out.println(client.getInputStream().read());
+                System.out.println(session.isValid());
 
         }
 }
