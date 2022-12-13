@@ -45,7 +45,7 @@ module.exports = function(axios, client, roles, FormData, jwt){
         form.append('client_secret', client.CLIENT_SECRET);
         form.append('redirect_uri', 'http://localhost:3001/'+client.CALLBACK);
         form.append('grant_type', 'authorization_code');
-        //console.log(form);
+        console.log(form);
 
         axios.post(
             // token endpoint
@@ -68,7 +68,7 @@ module.exports = function(axios, client, roles, FormData, jwt){
             resp.cookie("DemoCookie", jwt_payload.email)
             // HTML response with the code and access token received from the authorization server
             resp.send(
-                '<div> client.CALLBACK with code = <code>' + req.query.code + '</code></div><br>' +
+                '<div> CALLBACK with code = <code>' + req.query.code + '</code></div><br>' +
                 '<div> client app received access code = <code>' + response.data.access_token + '</code></div><br>' +
                 '<div> id_token = <code>' + response.data.id_token + '</code></div><br>' +
                 '<div> Hi <b>' + jwt_payload.email + '</b> </div><br>' +

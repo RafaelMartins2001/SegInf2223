@@ -5,5 +5,3 @@ p, premium, data2, write
 p, free, data2, read
 
 g, alice, admin
-g, teo, premium
-g, bob, free
