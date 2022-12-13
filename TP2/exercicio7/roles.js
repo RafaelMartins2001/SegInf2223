@@ -1,9 +1,21 @@
-const { newEnforcer } = require('casbin');
 
 
-async function getRoles(name){
-const enforcer = await newEnforcer('basic_model.conf', 'basic_policy.csv');
-const roles = await enforcer.getRolesForUser(name);
-console.log(roles)
+module.exports = function(newEnforcer){
+    return roles
+    async function roles(newEnforcer){
+
+        const enforcer = await newEnforcer('basic_model.conf', 'basic_policy.csv');
+    
+        async function getRoles(name){
+            return await enforcer.getRolesForUser(name);
+        }
+    
+        return {
+            getRoles
+        }
+    }
 }
-getRoles('alice')
+
+
+
+

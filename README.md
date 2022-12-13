@@ -14,10 +14,10 @@
 
 
 **TODO:**
-- [ ] Done
-- [ ] Fazer handlers para pedidos GET e POST
+- [ ] **Done**
+- [x] Fazer handlers para pedidos GET e POST
 - [ ] Associar roles a diferentes users com CLIENT_ID e CLIENT_SECRET
-- [ ] Arrumar o módulo server.js
+- [x] Arrumar o módulo server.js
 - [ ] \([Adicionar certificado na root do Chrome para o exercício 6](https://docs.vmware.com/en/VMware-Adapter-for-SAP-Landscape-Management/2.1.0/Installation-and-Administration-Guide-for-VLA-Administrators/GUID-D60F08AD-6E54-4959-A272-458D08B8B038.html))
 
 **Handlers:**
