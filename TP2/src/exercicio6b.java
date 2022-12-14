@@ -25,6 +25,5 @@ public class exercicio6b {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
 
                 System.out.println(session.isValid());
-                System.out.println(reader.readLine());
         }
 }

@@ -1,7 +1,7 @@
-p, admin, data2, read
-p, admin, data2, write
-p, premium, data2, read
-p, premium, data2, write
-p, free, data2, read
+p,free,data_1, read
+p, premium,data_1, write
 
-g, alice, admin
+
+g, admin, premium
+g, premium, free
+g, alaoradical@gmail.com, premium
