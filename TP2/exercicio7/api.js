@@ -1,5 +1,5 @@
 
-module.exports = function(axios, client, roles, FormData, jwt){
+module.exports = function(axios, client, roles, FormData, jwt, data){
     if(!axios || !client || !roles)throw "Invalid parameters!"
     return{
         getRedirect,
@@ -7,7 +7,7 @@ module.exports = function(axios, client, roles, FormData, jwt){
         postLogin
     }
         function getRedirect(req, resp){
-            resp.send('<a href=/login>Use Google Account</a>')
+            resp.send('<a href=/Login>Login</a>')
         }
 
         function getOAuth(req, resp){
@@ -33,7 +33,7 @@ module.exports = function(axios, client, roles, FormData, jwt){
         }
 
         function postLogin(req, resp){
-            //
+        //
         // TODO: check if 'state' is correct for this session
         //
 
@@ -62,8 +62,8 @@ module.exports = function(axios, client, roles, FormData, jwt){
             // decode id_token from base64 encoding
             // note: method decode does not verify signature
             var jwt_payload = jwt.decode(response.data.id_token)
-            console.log(jwt_payload)
-
+            //console.log(jwt_payload)
+            roles.addUserToFree(jwt_payload.email)
             // a simple cookie example
             resp.cookie("DemoCookie", jwt_payload.email)
             // HTML response with the code and access token received from the authorization server
