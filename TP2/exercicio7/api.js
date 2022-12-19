@@ -1,10 +1,13 @@
-
+let token = ''
 module.exports = function(axios, client, roles, FormData, jwt, data){
     if(!axios || !client || !roles)throw "Invalid parameters!"
     return{
         getRedirect,
         getOAuth,
-        postLogin
+        postLogin,
+        getLists,
+        createList,
+        createTask
     }
         function getRedirect(req, resp){
             resp.send('<a href=/Login>Login</a>')
@@ -63,7 +66,7 @@ module.exports = function(axios, client, roles, FormData, jwt, data){
             // note: method decode does not verify signature
             var jwt_payload = jwt.decode(response.data.id_token)
             //console.log(jwt_payload)
-            roles.addUserToFree(jwt_payload.email)
+            roles.addUserToFree(jwt_payload.email, response.data.scope.split(' '))
             // a simple cookie example
             resp.cookie("DemoCookie", jwt_payload.email)
             // HTML response with the code and access token received from the authorization server
@@ -74,10 +77,31 @@ module.exports = function(axios, client, roles, FormData, jwt, data){
                 '<div> Hi <b>' + jwt_payload.email + '</b> </div><br>' +
                 'Go back to <a href="/">Home screen</a>'
             );
+            token = response.data.access_token
         })
         .catch(function (error) {
             console.log(error)
             resp.send()
         });
+        }
+        
+
+        function getLists(req, resp) {
+            console.log(req.params)
+            data.getTasksFromUser(req.params.limit, token)
+            .then(result => resp.json(result))
+        }
+
+
+        async function createList(req, resp) {
+            console.log(req.params)
+            data.createListForUser(req.params.listId, req.params.listTitle, token)
+            .then(body => resp.send(body))
+        }
+
+        async function createTask(req, resp) {
+            console.log(req.params)
+            data.getTasksFromUser(req.params.taskDescription, token)
+            .then(body => resp.send(body))
         }
 }
