@@ -1,37 +1,25 @@
-'use strict';
-
-const fs = require('fs');
-const path = require('path');
-const http = require('http');
-const url = require('url');
-const opn = require('open');
-const destroyer = require('server-destroy');
-
-const {google} = require('googleapis');
-const people = google.people('v1');
-
-/**
- * To use OAuth2 authentication, we need access to a CLIENT_ID, CLIENT_SECRET, AND REDIRECT_URI.  To get these credentials for your application, visit https://console.cloud.google.com/apis/credentials.
- */
-const keyPath = './oauth.keys.json'
-let keys = {redirect_uris: ['']};
-if (fs.existsSync(keyPath)) {
-  keys = require(keyPath).web;
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+async function getTasksFromUser(query){
+  let adding = ''
+  if(query != undefined) adding = query
+  return fetch(`https://www.googleapis.com/tasks/v1/users/@me/lists${adding}`)
+      .then(res => res.text())
+      .then()
+      .then(text => console.log(text));
 }
 
-const oauth2Client = new google.auth.OAuth2(
-    keys.client_id,
-    keys.client_secret,
-    keys.redirect_uris[0]
-  );
+var url = `https://www.googleapis.com/tasks/v1/users/@me/lists`;
 
-const scopes = [
-    'https://www.googleapis.com/auth/tasks.readonly',
-    'https://www.googleapis.com/auth/tasks'
-  ];
+var xhr = new XMLHttpRequest();
+xhr.open("GET", url);
 
-const authorizeUrl = oauth2Client.generateAuthUrl({
-    access_type: 'offline',
-    scope: scopes.join(' '),
-  })
-  console.log(authorizeUrl)
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer ya29.a0AX9GBdV27PmsjHU23kBFU8yEw-6Tr2LcdhpERSCKMyCJf_RI285tyEEW9grAJGIj0IdYfRndbUR7-FNct-CyhWtv4nDYDJPoQHdOK1u5Tobt3W9CgzxKeCCMqLdXox9_vBY82PqhrTqMeGC3y9JianSjyRn2aCgYKASoSARESFQHUCsbCdMM9ZwnCaU94i3x4zKOFkQ0163");
+
+xhr.onreadystatechange = function () {
+   if (xhr.readyState === 4) {
+      console.log(xhr.status);
+      console.log(xhr.responseText);
+   }};
+
+xhr.send();

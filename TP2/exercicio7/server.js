@@ -22,9 +22,9 @@ app.get('/'+client.CALLBACK, handlers.postLogin)
 
 app.get('/lists/:limit', handlers.getLists)
 
-app.post('/lists/:listId&:listTitle', handlers.createList)
+/*app.post('/lists/:listId&:listTitle', handlers.createList)
 
-app.post('/task/:taskDescription', handlers.createTask)
+app.post('/task/:taskDescription', handlers.createTask)*/
 
 
 app.listen(port, (err) => {

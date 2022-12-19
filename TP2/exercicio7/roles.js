@@ -10,13 +10,20 @@ const { newEnforcer } = require('casbin');
         const res = await e.addRoleForUser(user, role)
     }
 
-    async function addUserToFree(user){
+    async function addUserToFree(user, scopes){
         const e = await getEnforcer()
         const allRoles = await getRoles(user, e)
         if(allRoles.length === 0){
-            await addUserToRole(user, 'free', e)
-            const newRole = await getRoles(user, e)
-            console.log(newRole)
+            if(scopes.length === 3){
+                await addUserToRole(user, 'free', e)
+                const newRole = await getRoles(user, e)
+                console.log(newRole)
+            }
+            else{
+                await addUserToRole(user, 'premium', e)
+                const newRole = await getRoles(user, e)
+                console.log(newRole)
+            }
         }
         else {
             console.log(allRoles)
