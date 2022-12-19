@@ -18,6 +18,12 @@
 - [x] Fazer handlers para pedidos GET e POST
 - [ ] Associar roles a diferentes users com CLIENT_ID e CLIENT_SECRET
 - [x] Arrumar o módulo server.js
+- [ ] Fazer o método getTasks no módulo api
+- [ ] Fazer o método createTask no módulo api
+- [ ] Fazer o método createList no módulo api
+- [ ] Fazer o método getTasksFromUser no módulo data
+- [ ] Fazer o método createTaskForUser no módulo data
+- [ ] Fazer o método createListForUser no módulo data
 - [ ] \([Adicionar certificado na root do Chrome para o exercício 6](https://docs.vmware.com/en/VMware-Adapter-for-SAP-Landscape-Management/2.1.0/Installation-and-Administration-Guide-for-VLA-Administrators/GUID-D60F08AD-6E54-4959-A272-458D08B8B038.html))
 
 **Handlers:**

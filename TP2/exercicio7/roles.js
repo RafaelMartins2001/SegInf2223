@@ -8,9 +8,6 @@ const { newEnforcer } = require('casbin');
     
     async function addUserToRole(user, role, e){
         const res = await e.addRoleForUser(user, role)
-        if (!res) {
-            throw `User already has the role ${role}!`
-        }
     }
 
     async function addUserToFree(user){
@@ -23,7 +20,6 @@ const { newEnforcer } = require('casbin');
         }
         else {
             console.log(allRoles)
-            throw 'User already has the other roles!'
         }
     }
 

@@ -19,7 +19,7 @@ module.exports = function(axios, client, roles, FormData, jwt, data){
                 + 'client_id='+ client.CLIENT_ID +'&'
                 
                 // OpenID scope "openid email"
-                + 'scope=openid%20email&'
+                + 'scope=openid%20email%20https://www.googleapis.com/auth/tasks.readonly%20https://www.googleapis.com/auth/tasks&'
                 
                 // parameter state is used to check if the user-agent requesting login is the same making the request to the client.CALLBACK URL
                 // more info at https://www.rfc-editor.org/rfc/rfc6749#section-10.12
