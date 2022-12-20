@@ -20,11 +20,11 @@ app.get('/login', handlers.getOAuth)
 
 app.get('/'+client.CALLBACK, handlers.postLogin)
 
-app.get('/lists/:limit', handlers.getLists)
+app.get('/lists', handlers.getLists)
 
-/*app.post('/lists/:listId&:listTitle', handlers.createList)
+app.post('/lists/:listId&:listTitle', handlers.createList)
 
-app.post('/task/:taskDescription', handlers.createTask)*/
+app.post('/task/:taskList&:title', handlers.createTask)
 
 
 app.listen(port, (err) => {

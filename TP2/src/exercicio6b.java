@@ -1,5 +1,10 @@
+import com.sun.net.httpserver.HttpContext;
+
 import javax.net.ssl.*;
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.http.HttpClient;
 import java.net.http.WebSocket;
 import java.security.*;
 import java.security.cert.CertificateException;
@@ -17,13 +22,27 @@ public class exercicio6b {
                 SSLSocketFactory sslFactory = sslContext.getSocketFactory();
 
 
-                // establish connection
                 SSLSocket client = (SSLSocket) sslFactory.createSocket("www.secure-server.edu", 4433);
                 client.startHandshake();
-
                 SSLSession session = client.getSession();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
-
                 System.out.println(session.isValid());
+
+                PrintWriter wtr = new PrintWriter(client.getOutputStream());
+
+                wtr.println("GET / HTTP/1.1");
+                wtr.println("Host: www.secure-server.edu");
+                wtr.println("");
+                wtr.flush();
+
+                BufferedReader bufRead = new BufferedReader(new InputStreamReader(client.getInputStream()));
+                String outStr;
+
+                while((outStr = bufRead.readLine()) != null){
+                        System.out.println(outStr);
+                }
+
+                bufRead.close();
+                wtr.close();
+
         }
 }

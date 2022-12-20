@@ -37,5 +37,6 @@ const { newEnforcer } = require('casbin');
     module.exports = {
         getRoles,
         addUserToRole,
-        addUserToFree
+        addUserToFree,
+        getEnforcer
     }

@@ -18,9 +18,9 @@
 - [x] Fazer handlers para pedidos GET e POST
 - [ ] Associar roles a diferentes users com CLIENT_ID e CLIENT_SECRET
 - [x] Arrumar o módulo server.js
-- [ ] Fazer o método getTasks no módulo api
-- [ ] Fazer o método createTask no módulo api
-- [ ] Fazer o método createList no módulo api
+- [x] Fazer o método getTasks no módulo api
+- [x] Fazer o método createTask no módulo api
+- [x] Fazer o método createList no módulo api
 - [ ] Fazer o método getTasksFromUser no módulo data
 - [ ] Fazer o método createTaskForUser no módulo data
 - [ ] Fazer o método createListForUser no módulo data

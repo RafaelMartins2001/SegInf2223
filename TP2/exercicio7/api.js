@@ -1,4 +1,13 @@
+const { getEnforcer } = require("./roles")
+function getData(form) {
+    var formData = new FormData(form);
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ": " + pair[1]);
+    }
+    console.log(Object.fromEntries(formData));
+  }
 let token = ''
+let email = ''
 module.exports = function(axios, client, roles, FormData, jwt, data){
     if(!axios || !client || !roles)throw "Invalid parameters!"
     return{
@@ -69,15 +78,27 @@ module.exports = function(axios, client, roles, FormData, jwt, data){
             roles.addUserToFree(jwt_payload.email, response.data.scope.split(' '))
             // a simple cookie example
             resp.cookie("DemoCookie", jwt_payload.email)
+
             // HTML response with the code and access token received from the authorization server
-            resp.send(
-                '<div> CALLBACK with code = <code>' + req.query.code + '</code></div><br>' +
-                '<div> client app received access code = <code>' + response.data.access_token + '</code></div><br>' +
-                '<div> id_token = <code>' + response.data.id_token + '</code></div><br>' +
-                '<div> Hi <b>' + jwt_payload.email + '</b> </div><br>' +
-                'Go back to <a href="/">Home screen</a>'
-            );
+            const stringToSend =
+            '<div> Hi <b>' + jwt_payload.email + '</b> </div><br>' +
+            'Get lists <a href="/lists">Get Lists</a><br><br>'+
+            'Create TaskList<br>'+
+            '<form id="1" onsubmit= "printResult()"></form>'+
+            '<label for="fname">First name:</label>'+
+            '<input type="text" id="fname" name="fname"><br><br>'+
+            '<label for="lname">Last name:</label>'+
+            '<input type="text" id="lname" name="lname"><br><br>'+
+            '<input type="submit" value="Create"><br><br>'+
+            '</form><br><br><br>'+
+            '<script>function myFunction() {console.log("The form was submitted");}</script>'+
+            'Go back to <a href="/">Home screen</a>'
+            
+
+            resp.send(stringToSend);
+                
             token = response.data.access_token
+            email =jwt_payload.email
         })
         .catch(function (error) {
             console.log(error)
@@ -85,23 +106,40 @@ module.exports = function(axios, client, roles, FormData, jwt, data){
         });
         }
         
+        
 
         function getLists(req, resp) {
             console.log(req.params)
-            data.getTasksFromUser(req.params.limit, token)
+            data.getTasksFromUser(token)
             .then(result => resp.json(result))
         }
 
 
         async function createList(req, resp) {
+            const e = await roles.getEnforcer()
+            const role = await roles.getRoles(email, e)
+            console.log(!role.includes('premium'))
+            console.log(!role.includes('admin'))
+            if(!role.includes('premium') && !role.includes('admin'))resp.send(JSON.stringify({
+                'erro': "User doesn't have the permission to create a list!",
+                }))
+            else{
             console.log(req.params)
             data.createListForUser(req.params.listId, req.params.listTitle, token)
             .then(body => resp.send(body))
+            }
         }
 
         async function createTask(req, resp) {
+            const e = await roles.getEnforcer()
+            const role = await roles.getRoles(email, e)
+            if(!role.includes('premium') && !role.includes('admin'))resp.send(JSON.stringify({
+                'erro': "User doesn't have the permission to add a task!",
+                }))
+            else{
             console.log(req.params)
-            data.getTasksFromUser(req.params.taskDescription, token)
+            data.createTaskForUser(req.params.taskList, req.params.title, token)
             .then(body => resp.send(body))
+            }
         }
 }
